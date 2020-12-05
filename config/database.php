@@ -2,7 +2,15 @@
 
 use Illuminate\Support\Str;
 
-$DATABASE_URL = parse_url(getenv("postgres://bwuausttquxwoe:0785e2b56b44f13f189eb89e6b81eb76bfb6efd0c4b93c60aca8f68902c8a5fb@ec2-34-237-166-54.compute-1.amazonaws.com:5432/dflc5l7n7vq7t6"));
+
+
+$url = parse_url(getenv("postgres://bwuausttquxwoe:0785e2b56b44f13f189eb89e6b81eb76bfb6efd0c4b93c60aca8f68902c8a5fb@ec2-34-237-166-54.compute-1.amazonaws.com:5432/dflc5l7n7vq7t6"));
+
+$host = $url["host"];
+$username = $url["user"];
+$password = $url["pass"];
+$database = substr($url["path"], 1);
+
 return [
 
     /*
@@ -63,20 +71,16 @@ return [
                 PDO::MYSQL_ATTR_SSL_CA => env('MYSQL_ATTR_SSL_CA'),
             ]) : [],
         ],
-
-        'pgsql' => [
-            'driver' => 'pgsql',
-            'host' => $DATABASE_URL["host"],
-            'port' => $DATABASE_URL['port'],
-            'database' => ltrim($DATABASE_URL['path'], '/'),
-            'username' => $DATABASE_URL['user'],
-            'password' => $DATABASE_URL['pass'],
-            'charset' => 'utf8',
-            'prefix' => '',
-            'prefix_indexes' => true,
-            'schema' => 'public',
-            'sslmode' => 'prefer',
-        ],
+        'pgsql' => array(
+            'driver'   => 'pgsql',
+            'host'     => $host,
+            'database' => $database,
+            'username' => $username,
+            'password' => $password,
+            'charset'  => 'utf8',
+            'prefix'   => '',
+            'schema'   => 'public',
+        ),
 
         'sqlsrv' => [
             'driver' => 'sqlsrv',
