@@ -51,7 +51,7 @@
     </div>
 
     <div class="form-group">
-        <label for="exampleInputEmail1">Anggota 1</label>
+        <label>Anggota 1</label>
         <input type="text" name="anggota1" value="{{ $post->anggota1 }}" class="form-control" name="email" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Anggota 1">
 
     </div>
