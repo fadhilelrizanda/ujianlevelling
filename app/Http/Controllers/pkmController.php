@@ -42,13 +42,13 @@ class pkmController extends Controller
             'anggota1' => 'required',
             'anggota2' => 'required',
             'link' => 'required',
-            'filepkm' => 'required',
+            // 'filepkm' => 'required',
         ]);
 
 
 
         Pkm::create($request->all());
-        $request->file('filepkm')->store('public');
+        // $request->file('filepkm')->store('public');
         return redirect()->route('posts.index')
             ->with('success', 'Post created successfully.');
     }
@@ -72,7 +72,7 @@ class pkmController extends Controller
             'anggota1' => 'required',
             'anggota2' => 'required',
             'link' => 'required',
-            'filepkm' => 'required',
+            // 'filepkm' => 'required',
         ]);
 
         $post->update($request->all());
