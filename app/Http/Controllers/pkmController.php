@@ -66,8 +66,13 @@ class pkmController extends Controller
     public function update(Request $request, Pkm $post)
     {
         $request->validate([
-            'title' => 'required',
-            'content' => 'required',
+            'nama' => 'required',
+            'email' => 'required',
+            'jenis' => 'required',
+            'anggota1' => 'required',
+            'anggota2' => 'required',
+            'link' => 'required',
+            'filepkm' => 'required',
         ]);
 
         $post->update($request->all());
